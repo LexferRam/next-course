@@ -1,44 +1,18 @@
-import { server} from '../config'
 // import Head from 'next/head'
-import ArticleList from '../components/ArticleList'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import page1 from './page1'
+import page2 from './page2'
 
-export default function Home({articles}) {
+export default function Home() {
 
   return (
-    <div >
-      {/* <Head>
-        <title>
-          WebDev Lexfer
-        </title>
-        <meta name='keywords' content='web development, programing' />
-      </Head> */}
-      <ArticleList articles={articles} />
-    </div>
+    <Router >
+      <Switch>
+        <Route path='/' component={page1} />
+        <Route path='/page2' component={page2} />
+        {/* <Route path='/' component={ } /> */}
+      </Switch>
+    </Router>
   )
 }
 
-export const getStaticProps = async () => {
-  const res = await fetch(`${server}/api/articles`)
-
-  const articles = await res.json()
-
-  return{
-    props:{
-      articles
-    }
-  }
-
-}
- 
-// export const getStaticProps = async () => {
-//   const res = await fetch(`https://jsonplaceholder.typicode.com/posts?_limit=6`)
-
-//   const articles = await res.json()
-
-//   return{
-//     props:{
-//       articles
-//     }
-//   }
-
-// }

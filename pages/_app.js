@@ -4,10 +4,11 @@ import '../styles/globals.css'
 function MyApp({ Component, pageProps }) {
   return (
     <Layout>
-      <Component {...pageProps} />
+      <div suppressHydrationWarning>
+        {typeof window === 'undefined' ? null : <Component {...pageProps} />}
+      </div>
     </Layout>
   )
 }
 
 export default MyApp
- 
